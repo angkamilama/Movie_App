@@ -16,7 +16,7 @@ const MoviesAPI = () => {
       <h1>Popular Movies</h1>
       {movies.map((movie) => (
         <div key={movie?.id}>
-          <h2>{movie?.title}</h2> <p>{movie?.overview}</p>{" "}
+          <h2>{movie?.title}</h2> <p>{movie?.overview}</p>
         </div>
       ))}
     </div>
