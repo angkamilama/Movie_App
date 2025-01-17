@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../TMDBAPI";
 
+interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+}
+
 const MoviesAPI = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   useEffect(() => {
     const fetchMoviesData = async () => {
       const moviesData = await fetchMovies();
