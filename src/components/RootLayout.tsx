@@ -11,7 +11,9 @@ const RootLayout = () => {
     <div className="box-border">
       <header>
         <div className="p-2  h-[50px] bg-[#213555] flex justify-between items-center mx-auto">
-          <h1 className="text-2xl text-slate-100 tracking-widest">TMDB</h1>
+          <NavLink to="/" className="text-2xl text-slate-100 tracking-widest">
+            TMDB
+          </NavLink>
           <div className="md:hidden">
             {showMenu ? (
               <RxCross1
