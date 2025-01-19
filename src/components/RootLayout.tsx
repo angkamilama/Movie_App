@@ -67,6 +67,13 @@ const RootLayout = () => {
             <>
               <ul className=" bg-[#3E5879] w-full h-screen flex flex-col justify-evenly items-center  text-slate-100 md:hidden">
                 <NavLink
+                  to="/"
+                  onClick={() => setShowMenu(false)}
+                  className=" hover:text-[#D8C4B6] hover:scale-105 tracking-widest cursor-pointer"
+                >
+                  Home
+                </NavLink>
+                <NavLink
                   to="MovieList"
                   onClick={() => setShowMenu(false)}
                   className=" hover:text-[#D8C4B6] hover:scale-105 tracking-widest cursor-pointer"

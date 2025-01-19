@@ -12,6 +12,7 @@ import Contact from "./components/Contact";
 import MovieList from "./components/MovieList";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import MovieDetail from "./components/MovieDetail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +21,9 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
-      <Route path="movieList" element={<MovieList />} />
+      <Route path="movieList" element={<MovieList />}>
+        <Route path=":id" element={<MovieDetail />} />
+      </Route>
       <Route path="Register" element={<Register />} />
     </Route>
   )

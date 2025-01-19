@@ -1,30 +1,29 @@
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../TMDBAPI";
+import { useNavigate } from "react-router-dom";
 
 interface Movie {
   id: number;
   title: string;
-  overview: string;
   poster_path: string;
-  vote_average: string;
-  release_date: string;
 }
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+
   useEffect(() => {
     const fetchMoviesData = async () => {
       const moviesData = await fetchMovies();
-      setMovies(moviesData);
+      const limitedMovieList = moviesData.slice(0, 8);
+      setMovies(limitedMovieList);
     };
     fetchMoviesData();
   }, []);
 
-  const limitedMovieList = movies.slice(0, 8);
+  let navigate = useNavigate();
 
-  const movieList = limitedMovieList.map((movie) => {
-    const { poster_path, title, vote_average, release_date, id, overview } =
-      movie;
+  const movieList = movies.map((movie) => {
+    const { poster_path, title, id } = movie;
     return (
       <div
         key={id}
@@ -33,6 +32,7 @@ const Movies = () => {
         <img
           src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
           className="w-[200px] h-[250px]"
+          alt={`poster of ${title}`}
         />
         <p className="text-slate-400 hover:text-slate-200 p-2 text-center font-bold text-lg cursor-pointer">
           {title}
@@ -43,16 +43,23 @@ const Movies = () => {
 
   return (
     <>
-      <div className="flex  flex-col h-justify-evenly items-center">
-        <h1 className="text-slate-200 text-2xl font-bold mt-9">
-          BROWSE MOVIES
-        </h1>
+      <div className="flex flex-col justify-evenly items-center">
+        <div className="text-center">
+          <h1 className="text-slate-200 text-2xl font-bold mt-9">
+            BROWSE MOVIES
+          </h1>
+        </div>
         <div className="mt-4 flex gap-4 flex-wrap justify-evenly items-center ">
           {movieList}
         </div>
-        <h3 className="bg-yellow-500 p-1 rounded-lg  text-center w-11/12">
+        <button
+          className="bg-yellow-500 hover:bg-yellow-400  p-1 rounded-lg  text-center my-7 w-9/12"
+          onClick={() => {
+            navigate("MovieList");
+          }}
+        >
           View All
-        </h3>
+        </button>
       </div>
     </>
   );
