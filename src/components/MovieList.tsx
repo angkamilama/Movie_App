@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchMovies } from "../TMDBAPI";
+import { fetchMovies } from "../movieAPI";
+import { NavLink } from "react-router-dom";
+import { Movie } from "../interface/MovieInterface";
 
-interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  vote_average: string;
-  release_date: string;
-}
 function MovieList() {
   const [movies, setMovies] = useState<Movie[]>();
 
@@ -21,23 +15,23 @@ function MovieList() {
   }, []);
 
   const moviesList = movies?.map((movie) => {
-    const { id, title, poster_path, overview, release_date, vote_average } =
-      movie;
+    const { id, title, poster_path } = movie;
 
     return (
-      <div
+      <NavLink
         key={id}
-        className="bg-slate-700 flex flex-col justify-evenly items-center w-[300px] md:w-[250px] h-[400px] "
+        to={`${id}`}
+        className="bg-slate-700 flex flex-col justify-evenly items-center w-[300px] md:w-[250px] h-[425px] "
       >
         <img
           src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
-          className="w-[400px] h-[350px]"
+          className="w-[400px] h-[350px] hover:scale-105"
           alt={`poster of ${title}`}
         />
-        <p className="text-slate-400 hover:text-slate-200 p-2 text-center font-bold text-base cursor-pointer">
+        <p className="text-slate-400 hover:text-slate-200 text-center font-bold text-base cursor-pointer p-3">
           {title}
         </p>
-      </div>
+      </NavLink>
     );
   });
 

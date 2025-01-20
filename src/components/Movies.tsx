@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchMovies } from "../TMDBAPI";
-import { useNavigate } from "react-router-dom";
-
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-}
+import { fetchMovies } from "../movieAPI";
+import { useNavigate, NavLink } from "react-router-dom";
+import { Movie } from "../interface/MovieInterface";
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -25,9 +20,10 @@ const Movies = () => {
   const movieList = movies.map((movie) => {
     const { poster_path, title, id } = movie;
     return (
-      <div
+      <NavLink
         key={id}
-        className="bg-slate-700 flex flex-col justify-evenly items-center"
+        to={`movieList/${id}`}
+        className="bg-slate-700 flex flex-col justify-evenly items-center hover:scale-105 md:hover:scale-110"
       >
         <img
           src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
@@ -37,7 +33,7 @@ const Movies = () => {
         <p className="text-slate-400 hover:text-slate-200 p-2 text-center font-bold text-lg cursor-pointer">
           {title}
         </p>
-      </div>
+      </NavLink>
     );
   });
 
