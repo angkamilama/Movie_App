@@ -13,7 +13,7 @@ function MovieDetail() {
         const moviesData = await fetchMovies();
 
         const movie = moviesData.find((movie: Movie) => {
-          return movie.id === Number(userId);
+          return movie.id === userId;
         });
         setSelectedMovie(movie);
       } catch (error) {
