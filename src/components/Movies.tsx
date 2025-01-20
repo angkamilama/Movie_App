@@ -10,6 +10,8 @@ const Movies = () => {
     const fetchMoviesData = async () => {
       const moviesData = await fetchMovies();
       const limitedMovieList = moviesData.slice(0, 8);
+      console.log(typeof limitedMovieList[0].vote_average);
+
       setMovies(limitedMovieList);
     };
     fetchMoviesData();
