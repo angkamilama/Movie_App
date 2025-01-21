@@ -1,4 +1,5 @@
-import Movies from "./Movies";
+import Movies from "./LimitedMovies";
+import Footer from "./Footer";
 
 function Home() {
   return (
@@ -22,6 +23,7 @@ function Home() {
           <Movies />
         </div>
       </main>
+      <Footer />
     </>
   );
 }

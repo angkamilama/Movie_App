@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../movieAPI";
-import { Movie } from "../interface/MovieInterface";
+import { Movie } from "../type/MovieInterface";
 
 function MovieDetail() {
   const { userId } = useParams();
@@ -36,7 +36,8 @@ function MovieDetail() {
         <div className="p-4 text-slate-300 h-[400px] md:h-[500px] flex flex-col justify-evenly items-start ">
           <h1 className="text-4xl">{selectedMovie.title}</h1>
           <p className="text-[#E7D283]">
-            Vote:{selectedMovie.vote_average} / 10
+            Vote:o
+            {selectedMovie.vote_average} / 10
           </p>
           <p>{selectedMovie.overview}</p>
           <p className="text-[#A9C46C]">{selectedMovie.release_date}</p>

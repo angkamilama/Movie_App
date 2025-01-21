@@ -9,7 +9,7 @@ import Login from "./components/Login";
 import About from "./components/About";
 import RootLayout from "./components/RootLayout";
 import Contact from "./components/Contact";
-import MovieList from "./components/MovieList";
+import MovieList from "./components/Movies";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import MovieDetail from "./components/MovieDetail";

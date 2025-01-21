@@ -1,38 +1,38 @@
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../movieAPI";
-import { useNavigate, NavLink } from "react-router-dom";
-import { Movie } from "../interface/MovieInterface";
+import { NavLink } from "react-router-dom";
+import { Movie } from "../type/MovieInterface";
 
-const Movies = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+function MovieList() {
+  const [movies, setMovies] = useState<Movie[] | null>();
 
   useEffect(() => {
-    const fetchMoviesData = async () => {
-      const moviesData = await fetchMovies();
-      const limitedMovieList = moviesData.slice(0, 8);
-      console.log(typeof limitedMovieList[0].vote_average);
-
-      setMovies(limitedMovieList);
-    };
-    fetchMoviesData();
+    try {
+      const fetchMoviesData = async () => {
+        const moviesData = await fetchMovies();
+        setMovies(moviesData);
+      };
+      fetchMoviesData();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
-  let navigate = useNavigate();
+  const moviesList = movies?.map((movie) => {
+    const { id, title, poster_path } = movie;
 
-  const movieList = movies.map((movie) => {
-    const { poster_path, title, id } = movie;
     return (
       <NavLink
         key={id}
-        to={`movieList/${id}`}
-        className="bg-slate-700 flex flex-col justify-evenly items-center hover:scale-105 md:hover:scale-110"
+        to={`${id}`}
+        className="bg-slate-700 flex flex-col justify-evenly items-center w-[300px] md:w-[250px] h-[425px] "
       >
         <img
           src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
-          className="w-[200px] h-[250px]"
+          className="w-[400px] h-[350px] hover:scale-105"
           alt={`poster of ${title}`}
         />
-        <p className="text-slate-400 hover:text-slate-200 p-2 text-center font-bold text-lg cursor-pointer">
+        <p className="text-slate-400 hover:text-slate-200 text-center font-bold text-base cursor-pointer p-3">
           {title}
         </p>
       </NavLink>
@@ -41,25 +41,14 @@ const Movies = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-evenly items-center">
-        <div className="text-center">
-          <h1 className="text-slate-200 text-2xl font-bold mt-9">
-            BROWSE MOVIES
-          </h1>
+      <div className=" bg-[#3E5879] flex flex-col justify-evenly items-center w-full p-5">
+        <h3 className="text-2xl text-yellow-200 mb-5">Movies</h3>
+        <div className="flex flex-wrap justify-center items-center gap-4">
+          {moviesList}
         </div>
-        <div className="mt-4 flex gap-4 flex-wrap justify-evenly items-center ">
-          {movieList}
-        </div>
-        <button
-          className="bg-yellow-500 hover:bg-yellow-400  p-1 rounded-lg  text-center my-7 w-9/12"
-          onClick={() => {
-            navigate("MovieList");
-          }}
-        >
-          View All
-        </button>
       </div>
     </>
   );
-};
-export default Movies;
+}
+
+export default MovieList;
