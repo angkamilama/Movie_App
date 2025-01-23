@@ -4,7 +4,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { NavLink } from "react-router-dom";
 import { Movie } from "@/types/movieType";
 
-function MyCarousel({ movies }: Movie[]): JSX.Element {
+type MyCarouselProps = {
+  movies: Movie[];
+};
+
+const MyCarousel: React.FC<MyCarouselProps> = ({ movies }): JSX.Element => {
   const randomIndex = Math.floor(Math.random() * movies.length);
   let movieSlide = movies.slice(randomIndex, movies.length);
   const moviesList = movieSlide?.map((movie: Movie) => {
@@ -62,6 +66,6 @@ function MyCarousel({ movies }: Movie[]): JSX.Element {
       </Slider>
     </div>
   );
-}
+};
 
 export default MyCarousel;

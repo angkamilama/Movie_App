@@ -7,7 +7,7 @@ import Footer from "./Footer";
 
 function MovieDetail() {
   const { movieId } = useParams();
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Movie[] | []>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function MovieDetail() {
           </button>
         </div>
       </div>
-      <div className="bg-slate-700 text-center flex flex-col justify-evenly w-full h-[500px] border border-red-800 ">
+      <div className="bg-slate-700 text-center flex flex-col justify-evenly w-full h-[500px]  ">
         <h1 className="text-white font-extrabold text-2xl">RELATED MOVIES</h1>
         <div>
           {movies.length > 0 ? (
