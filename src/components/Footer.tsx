@@ -24,23 +24,27 @@ function Footer() {
         <div className="flex justify-evenly items-center w-11/12 md:w-5/12 ">
           <div className="flex justify-evenly items-center w-4/12">
             <FaLocationDot />
-            <p>Essen, Germany</p>
+            <p className="text-xs md:text-sm">Essen, Germany</p>
           </div>
           <div className="flex justify-evenly items-center w-4/12">
             <IoCallSharp />
-            <p>+4912345678</p>
+            <p className="text-xs md:text-sm">+4912345678</p>
           </div>
           <div className="flex justify-evenly items-center w-4/12">
             <LuMail />
-            <p>info@xyz.de</p>
+            <p className="text-xs md:text-sm">info@xyz.de</p>
           </div>
         </div>
         <div className="flex flex-col justify-evenly items-center w-10/12 md:w-6/12">
           <div className=" w-full">
             <ul className="flex justify-evenly items-center text-xs mb-4">
-              <li>Privacy Policy</li>
-              <li>Return, Refund & Cancellation Policy</li>
-              <li>Terms & Conditions</li>
+              <li className="hover:underline cursor-pointer">Privacy Policy</li>
+              <li className="hover:underline cursor-pointer">
+                Return, Refund & Cancellation Policy
+              </li>
+              <li className="hover:underline  cursor-pointer">
+                Terms & Conditions
+              </li>
             </ul>
           </div>
           <p className="flex text-sm">

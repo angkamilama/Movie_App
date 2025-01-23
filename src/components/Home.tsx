@@ -8,7 +8,7 @@ function Home() {
         <div className={`relative bg-gradient-to-t from-yellow-500 h-[400px] `}>
           <div className="absolute top-[200px] text-center w-9/12">
             <p className="text-2xl text-slate-400 font-bold mb-7">
-              Our first OTT app
+              My first Movie app
             </p>
             <blockquote className="text-2xl font-semibold italic text-center text-slate-900 ">
               Step up your movie

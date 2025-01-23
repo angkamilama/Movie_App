@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../movieAPI";
 import { NavLink } from "react-router-dom";
-import { Movie } from "../type/MovieInterface";
+import { Movie } from "../types/movieType";
 
 function MovieList() {
   const [movies, setMovies] = useState<Movie[] | null>();
@@ -14,7 +14,7 @@ function MovieList() {
       };
       fetchMoviesData();
     } catch (error) {
-      console.log(error);
+      console.log(error, "failed to fetch it ang!");
     }
   }, []);
 

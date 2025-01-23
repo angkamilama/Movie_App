@@ -10,11 +10,11 @@ const RootLayout = () => {
   return (
     <div className="box-border">
       <header>
-        <div className="p-2  h-[50px] bg-[#213555] flex justify-between items-center mx-auto">
+        <div className="p-2  fixed z-10 w-full h-[50px] bg-[#213555] flex justify-between items-center mx-auto ">
           <NavLink to="/" className="text-2xl text-slate-100 tracking-widest">
             TMDB
           </NavLink>
-          <div className="md:hidden">
+          <div className="md:hidden ">
             {showMenu ? (
               <RxCross1
                 className="w-8 h-9 text-slate-100 cursor-pointer"
@@ -30,7 +30,7 @@ const RootLayout = () => {
           <nav className=" hidden md:block w-7/12">
             <ul className="flex justify-evenly items-center text-slate-300">
               <NavLink
-                to="MovieList"
+                to="movies"
                 className=" text-base hover:text-[#D8C4B6] hover:scale-105 tracking-wider cursor-pointer"
               >
                 Movies
@@ -48,7 +48,7 @@ const RootLayout = () => {
                 Contact
               </NavLink>
               <NavLink
-                to="Register"
+                to="/Register"
                 className=" hover:text-[#D8C4B6] hover:scale-105 tracking-wider cursor-pointer"
               >
                 Register
@@ -74,11 +74,18 @@ const RootLayout = () => {
                   Home
                 </NavLink>
                 <NavLink
-                  to="MovieList"
+                  to="Movies"
                   onClick={() => setShowMenu(false)}
                   className=" hover:text-[#D8C4B6] hover:scale-105 tracking-widest cursor-pointer"
                 >
                   Movies
+                </NavLink>
+                <NavLink
+                  to="About"
+                  onClick={() => setShowMenu(false)}
+                  className=" hover:text-[#D8C4B6] hover:scale-105 tracking-widest cursor-pointer"
+                >
+                  About
                 </NavLink>
                 <NavLink
                   to="Contact"

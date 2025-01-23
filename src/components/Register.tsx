@@ -1,5 +1,5 @@
 function Register() {
-  return <div>Register</div>;
+  return <p className="mt-12 border border-red-500">Regitsterin</p>;
 }
 
 export default Register;
