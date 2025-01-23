@@ -7,8 +7,8 @@ import Footer from "./Footer";
 
 function MovieDetail() {
   const { movieId } = useParams();
-  const [movies, setMovies] = useState<Movie[] | null>();
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>();
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     const fetchMoviesData = async () => {
@@ -43,10 +43,11 @@ function MovieDetail() {
           <p className="text-[#E7D283]">
             Vote: {Math.floor(selectedMovie?.vote_average)} / 10
           </p>
-          <p>{selectedMovie.overview}</p>
+          <p>{selectedMovie?.overview || "Overview not available"}</p>
           <p className="text-[#A9C46C]">
             Release date: {selectedMovie?.release_date}
           </p>
+
           <button className="bg-yellow-300 hover:bg-yellow-500 text-slate-800 text-sm font-bold w-[140px] h-12 rounded-lg p-2 ">
             Add to Favourite
           </button>
