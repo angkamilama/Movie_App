@@ -55,7 +55,7 @@ function Favourite({ selectedMovie }: FavouriteProps) {
           </span>
         ) : (
           <p className="bg-yellow-300 hover:bg-yellow-500 text-slate-800 text-sm font-bold w-[140px] h-10 rounded-lg p-2 ">
-            Add to Favourite
+            Add to WatchList
           </p>
         )}
       </button>

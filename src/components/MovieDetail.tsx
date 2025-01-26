@@ -29,7 +29,7 @@ function MovieDetail() {
   }, [movieId]);
 
   if (!selectedMovie) {
-    return <div>Loading...</div>;
+    return <div>There is an error !</div>;
   }
 
   return (
