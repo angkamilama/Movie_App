@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../movieAPI";
 import { NavLink } from "react-router-dom";
-import { Movie } from "../types/movieType";
+import { Movie } from "../types/Types";
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);

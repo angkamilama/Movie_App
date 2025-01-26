@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { NavLink } from "react-router-dom";
-import { Movie } from "@/types/movieType";
+import { Movie } from "@/types/Types";
 
 type MyCarouselProps = {
   movies: Movie[];

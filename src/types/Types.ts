@@ -6,3 +6,7 @@ export type Movie = {
   vote_average?: number;
   release_date?: string;
 };
+
+export type FavouriteProps = {
+  selectedMovie: Movie;
+};
