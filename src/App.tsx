@@ -11,8 +11,9 @@ import RootLayout from "./components/RootLayout";
 import Contact from "./components/Contact";
 import MovieList from "./components/Movies";
 import Register from "./components/Register";
-import Home from "./components/Home";
 import MovieDetail from "./components/MovieDetail";
+import Home from "./components/Home";
+import ShoppingCart from "./components/ShoppingCart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="About" element={<About />} />
       <Route path="Contact" element={<Contact />} />
       <Route path="Movies" element={<MovieList />} />
+      <Route path="shoppingCart" element={<ShoppingCart />} />
       <Route path="movies/:movieId" element={<MovieDetail />} />
       <Route path="Register" element={<Register />} />
     </Route>

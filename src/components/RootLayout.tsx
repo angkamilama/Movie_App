@@ -42,18 +42,18 @@ const RootLayout = () => {
                 About
               </NavLink>
               <NavLink
-                to="Contact"
+                to="/Contact"
                 className=" hover:text-[#D8C4B6] hover:scale-105 tracking-wider cursor-pointer"
               >
                 Contact
               </NavLink>
               <NavLink
-                to="/Register"
+                to="Login"
                 className=" hover:text-[#D8C4B6] hover:scale-105 tracking-wider cursor-pointer"
               >
-                Register
+                Login
               </NavLink>
-              <NavLink to="" className="cursor-pointer">
+              <NavLink to="shoppingCart" className="cursor-pointer">
                 <GoBell className="w-5 h-5" />
               </NavLink>
               <NavLink to="Login" className="cursor-pointer">
@@ -102,11 +102,11 @@ const RootLayout = () => {
                   Login
                 </NavLink>
                 <NavLink
-                  to="Register"
+                  to="ShoppingCart"
                   onClick={() => setShowMenu(false)}
                   className=" hover:text-[#D8C4B6] hover:scale-105 tracking-widest cursor-pointer"
                 >
-                  Register
+                  ShoppingCart
                 </NavLink>
               </ul>
             </>
