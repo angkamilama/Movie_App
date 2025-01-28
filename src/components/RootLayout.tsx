@@ -2,11 +2,12 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
-import { GoBell } from "react-icons/go";
+import { TiShoppingCart } from "react-icons/ti";
 import { VscAccount } from "react-icons/vsc";
 
 const RootLayout = () => {
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <div className="box-border">
       <header>
@@ -53,8 +54,11 @@ const RootLayout = () => {
               >
                 Login
               </NavLink>
-              <NavLink to="shoppingCart" className="cursor-pointer">
-                <GoBell className="w-5 h-5" />
+              <NavLink to="shoppingCart" className=" relative cursor-pointer  ">
+                <TiShoppingCart className="w-6 h-6" />
+                <span className="absolute text-center bottom-2 left-6 bg-green-500 rounded-full h-6 w-6">
+                  3
+                </span>
               </NavLink>
               <NavLink to="Login" className="cursor-pointer">
                 <VscAccount className="w-6 h-6" />
