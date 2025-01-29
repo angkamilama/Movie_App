@@ -1,12 +1,33 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 import { TiShoppingCart } from "react-icons/ti";
 import { VscAccount } from "react-icons/vsc";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "@/firebase/firebase-config";
+import { Movie, MoviesAddedProps } from "@/types/Types";
 
 const RootLayout = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [allMovies, setAllMovies] = useState<MoviesAddedProps[]>([]);
+
+  useEffect(() => {
+    const moviesCollectionRef = collection(db, "Movies");
+
+    const unsubscribe = onSnapshot(moviesCollectionRef, (movies) => {
+      const movieAdded = movies.docs.map((doc) => ({
+        movieAutoId: doc.id,
+        movieInfo: doc.data() as Movie,
+      }));
+
+      setAllMovies((prevMovies) =>
+        prevMovies.length !== movieAdded.length ? movieAdded : prevMovies
+      );
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className="box-border">
@@ -56,9 +77,11 @@ const RootLayout = () => {
               </NavLink>
               <NavLink to="shoppingCart" className=" relative cursor-pointer  ">
                 <TiShoppingCart className="w-6 h-6" />
-                <span className="absolute text-center bottom-2 left-6 bg-green-500 rounded-full h-6 w-6">
-                  3
-                </span>
+                {allMovies.length > 0 && (
+                  <span className="absolute text-blue-700 bg-yellow-400 text-center bottom-2 left-6 border rounded-full h-6 w-6 text-sm font-bold">
+                    {allMovies.length}
+                  </span>
+                )}
               </NavLink>
               <NavLink to="Login" className="cursor-pointer">
                 <VscAccount className="w-6 h-6" />

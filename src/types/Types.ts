@@ -18,3 +18,8 @@ export type Movie = {
 export type FavouriteProps = {
   selectedMovie: Movie;
 };
+
+export type MoviesAddedProps = {
+  movieAutoId: string;
+  movieInfo: Movie;
+};
