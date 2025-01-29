@@ -1,13 +1,5 @@
 import { db } from "@/firebase/firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  query,
-  doc,
-  where,
-  deleteDoc,
-} from "firebase/firestore";
+import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
 import { FavouriteProps } from "@/types/Types";
 import { useState, useEffect } from "react";
 
