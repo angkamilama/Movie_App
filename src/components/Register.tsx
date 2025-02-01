@@ -14,7 +14,7 @@ function Register() {
   };
   return (
     <div className=" bg-slate-600 w-screen h-screen">
-      <div className="flex flex-col justify-evenly items-center bg-slate-300 mt-12 w-full md:w-6/12 mx-auto p-6">
+      <div className="flex flex-col justify-evenly items-center bg-slate-300 mt-12 w-full md:w-5/12 mx-auto p-6 rounded-xl">
         <div className="flex items-center w-8/12">
           <div className="flex-grow border border-t border-gray-500"></div>
           <span className="px-3 text-2xl text-gray-800">Register</span>

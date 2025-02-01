@@ -16,10 +16,10 @@ function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-slate-300">
+    <div className="flex justify-center items-center h-screen bg-slate-300 ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-6 border rounded-lg shadow-md bg-slate-50"
+        className="p-6 border rounded-lg shadow-md bg-slate-50 w-10/12 md:w-5/12"
       >
         <h2 className="text-2xl font-bold mb-4">Login</h2>
 
