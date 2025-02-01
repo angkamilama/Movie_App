@@ -5,17 +5,20 @@ import { Movie } from "../types/Types";
 
 function MovieList() {
   const [movies, setMovies] = useState<Movie[] | null>();
+  const [errorMsg, setErrorMsg] = useState(false);
 
   useEffect(() => {
-    try {
-      const fetchMoviesData = async () => {
+    const fetchMoviesData = async () => {
+      try {
         const moviesData = await fetchMovies();
+        console.log(moviesData);
         setMovies(moviesData);
-      };
-      fetchMoviesData();
-    } catch (error) {
-      console.log(error, "failed to fetch it ang!");
-    }
+      } catch (error) {
+        setErrorMsg(true);
+      }
+    };
+
+    fetchMoviesData();
   }, []);
 
   const moviesList = movies?.map((movie) => {
@@ -43,9 +46,15 @@ function MovieList() {
     <>
       <div className=" bg-[#3E5879] flex flex-col justify-evenly items-center w-full p-5">
         <h3 className="text-2xl text-yellow-200 mb-5">Movies</h3>
-        <div className="flex flex-wrap justify-center items-center gap-4">
-          {moviesList}
-        </div>
+        {errorMsg ? (
+          <p className="mt-[200px] text-red-700">
+            There is an error loading movie
+          </p>
+        ) : (
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            {moviesList}
+          </div>
+        )}
       </div>
     </>
   );

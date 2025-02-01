@@ -5,6 +5,7 @@ import { Movie } from "../types/Types";
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     try {
@@ -15,7 +16,7 @@ const Movies = () => {
       };
       fetchMoviesData();
     } catch (error) {
-      console.error(error, "there is an error");
+      setError(true);
     }
   }, []);
 
@@ -38,6 +39,14 @@ const Movies = () => {
       </NavLink>
     );
   });
+
+  if (error) {
+    return (
+      <p className="text-red text-3xl">
+        ⚠️ Error fetching movies. Please try again later.
+      </p>
+    );
+  }
 
   return (
     <>

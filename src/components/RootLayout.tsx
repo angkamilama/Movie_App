@@ -32,7 +32,7 @@ const RootLayout = () => {
   return (
     <div className="box-border">
       <header>
-        <div className="p-2  fixed z-10 w-full h-[50px] bg-[#213555] flex justify-between items-center mx-auto ">
+        <div className="p-2  fixed top-0 right-0 left-0 z-10 w-full h-[50px] bg-[#213555] flex justify-between items-center mx-auto mt-0 ">
           <NavLink to="/" className="text-2xl text-slate-100 tracking-widest">
             TMDB
           </NavLink>
@@ -89,7 +89,7 @@ const RootLayout = () => {
             </ul>
           </nav>
         </div>
-        <div className="flex flex-col">
+        <div className="flex border flex-col">
           {showMenu && (
             <>
               <ul className=" bg-[#3E5879] w-full h-screen flex flex-col justify-evenly items-center  text-slate-100 md:hidden">

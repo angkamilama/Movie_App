@@ -41,7 +41,7 @@ function ShoppingCart() {
   };
 
   return (
-    <div className="mt-12 w-full h-lvh bg-[#5C7285]">
+    <div className="mt-12 w-full h-dvh bg-[#5C7285]">
       <div className="w-full md:w-8/12 h-auto text-center mx-auto">
         {favouriteMovies.length > 0 ? (
           favouriteMovies.map((movie) => {
