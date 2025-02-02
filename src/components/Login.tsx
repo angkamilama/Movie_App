@@ -1,6 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { LoginFormValues } from "@/types/Types";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/firebase-config";
 
 function Login() {
   const {
@@ -11,8 +13,19 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
-    console.log("Login Data:", data);
+  const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+
+      const user = userCredential.user;
+      // ...
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

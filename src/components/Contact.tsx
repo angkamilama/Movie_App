@@ -13,8 +13,8 @@ function Contact() {
   };
 
   return (
-    <div className="bg-slate-600 h-screen w-screen">
-      <div className="flex flex-col justify-between items-center bg-slate-300 w-full md:w-5/12 mt-12 mx-auto p-6 rounded-xl">
+    <div className="bg-slate-300 md:bg-slate-600 min-h-screen w-screen md:pt-[40px] flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center bg-slate-300 w-full md:w-6/12 rounded-xl p-6">
         <h3 className="text-2xl mb-8 ">Contact Details</h3>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -79,20 +79,20 @@ function Contact() {
               <p className="text-red-500">{errors.email.message}</p>
             )}
           </div>
-          <div className="flex flex-col justify-evenly items-start w-full">
-            <label className="flex flex-col justify-evenly items-baseline mx-auto h-[150px] w-10/12">
-              <span className="w-32  text-center ">Enquiry:</span>
+          <div className=" flex flex-col justify-evenly items-center w-full">
+            <label className="flex flex-col justify-evenly items-start mx-auto h-[150px] w-10/12 ">
+              <span className=" w-32  text-right">Enquiry:</span>
               <textarea
                 {...register("textArea", {
                   required: "please provide your detail",
                 })}
                 rows={4}
                 cols={30}
-                className="border border-slate-700 p-1 w-full "
+                className="border border-slate-700 p-1 ml-6 w-full "
               />
             </label>
             {errors.textArea && (
-              <p className="text-red-500 ">{errors.textArea.message}</p>
+              <p className="text-red-500  ">{errors.textArea.message}</p>
             )}
           </div>
           <button
