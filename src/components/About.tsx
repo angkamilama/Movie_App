@@ -1,4 +1,4 @@
-import WatchingMovie from "../assets/watchingMovie.jpg";
+import WatchingMovie from "../assets/WatchingMovie.jpg";
 
 function About() {
   return (
