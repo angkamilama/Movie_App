@@ -1,5 +1,11 @@
 import { db, auth } from "@/firebase/firebase-config";
-import { collection, getDocs, addDoc, query, where } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  addDoc,
+  query,
+  where,
+} from "firebase/firestore";
 import { FavouriteProps } from "@/types/Types";
 import { useState, useEffect } from "react";
 
@@ -8,30 +14,28 @@ function WatchListMovie({ selectedMovie }: FavouriteProps) {
   let moviesCollectionRef = collection(db, "Movies");
 
   useEffect(() => {
-    const checkIfMovieExists = async () => {
-      try {
-        const q = query(
-          moviesCollectionRef,
-          where("id", "==", selectedMovie.id)
-        );
-        const querySnapshot = await getDocs(q);
-        setAddedFavourite(!querySnapshot.empty);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    checkIfMovieExists();
-  }, [selectedMovie, moviesCollectionRef]);
+    if (!selectedMovie?.id || !auth.currentUser) return;
+
+    const user = auth.currentUser;
+    const myQuery = query(
+      moviesCollectionRef,
+      where("id", "==", selectedMovie.id),
+      where("createdBy", "==", user.uid)
+    );
+
+    const unsubscribeMovies = onSnapshot(myQuery, (movies) => {
+      setAddedFavourite(!movies.empty);
+    });
+
+    return () => unsubscribeMovies();
+  }, [selectedMovie]);
 
   const addMovie = async () => {
     try {
-      const user = auth.currentUser;
-      console.log("Current User UID:", user ? user.uid : "No user logged in");
-      console.log(user);
       if (addedFavourite) {
         return;
       }
-
+      const user = auth.currentUser;
       await addDoc(moviesCollectionRef, {
         ...selectedMovie,
         createdBy: user?.uid,
@@ -47,9 +51,9 @@ function WatchListMovie({ selectedMovie }: FavouriteProps) {
       <div>
         {addedFavourite ? (
           <div className="flex justify-evenly items-center w-[180px]">
-            <p className="bg-green-600 text-slate-200 text-center w-[70px] h-10 p-2 rounded-lg">
+            <button className="bg-green-600 text-slate-200 text-center w-[70px] h-10 p-2 rounded-lg">
               Added
-            </p>
+            </button>
           </div>
         ) : (
           <button
