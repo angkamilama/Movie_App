@@ -1,10 +1,10 @@
-import WatchingMovie from "../public/WatchingMovie.jpg";
+// import WatchingMovie from "../public/WatchingMovie.jpg";
 
 function About() {
   return (
     <div className="bg-slate-600 min-h-screen w-screen pt-[45px] flex justify-center items-center">
       <div className=" p-5 bg-slate-300 flex flex-col justify-evenly items-center gap-8 min-h-screen w-full md:w-8/12">
-        <img src={WatchingMovie} alt="Watching Movie" />
+        <img src="/WatchingMovie.jpg" alt="Watching Movie" />
         <div className=" w-full">
           <h3 className="text-xl mb-4">About Us – TMDB Movie App 🎬</h3>
           <p>
