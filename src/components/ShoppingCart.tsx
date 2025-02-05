@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
-import { getDocs, doc, deleteDoc, collection } from "firebase/firestore";
-import { db } from "@/firebase/firebase-config";
+import {
+  getDocs,
+  doc,
+  deleteDoc,
+  query,
+  where,
+  collection,
+} from "firebase/firestore";
+import { db, auth } from "@/firebase/firebase-config";
 import { Movie, MoviesAddedProps } from "@/types/Types";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
@@ -12,13 +19,21 @@ function ShoppingCart() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const moviesAddedRef = await getDocs(collection(db, "Movies"));
+        const user = auth.currentUser;
 
-        const movieAdded = moviesAddedRef.docs.map((movie) => ({
+        if (!user) {
+          console.warn("User not authenticated");
+          return;
+        }
+
+        const moviesAddedRef = collection(db, "Movies");
+        const q = query(moviesAddedRef, where("createdBy", "==", user.uid));
+        const moviesSnapshot = await getDocs(q);
+        const movieAdded = moviesSnapshot.docs.map((movie) => ({
           movieAutoId: movie.id,
           movieInfo: movie.data() as Movie,
         }));
-        console.log(movieAdded);
+
         setFavouriteMovies(movieAdded);
       } catch (error) {
         console.error("there is an error", error);
@@ -31,7 +46,6 @@ function ShoppingCart() {
     try {
       const removeMovie = doc(db, "Movies", id);
       await deleteDoc(removeMovie);
-
       setFavouriteMovies((prevMovies) =>
         prevMovies.filter((movie) => movie.movieAutoId !== id)
       );
@@ -41,7 +55,7 @@ function ShoppingCart() {
   };
 
   return (
-    <div className="mt-12 w-full h-dvh bg-[#5C7285]">
+    <div className="mt-12 w-full min-h-screen bg-[#5C7285]">
       <div className="w-full md:w-8/12 h-auto text-center mx-auto">
         {favouriteMovies.length > 0 ? (
           favouriteMovies.map((movie) => {
