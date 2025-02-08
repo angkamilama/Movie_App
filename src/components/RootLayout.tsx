@@ -4,35 +4,46 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 import { TiShoppingCart } from "react-icons/ti";
 import { VscAccount } from "react-icons/vsc";
-import { collection, onSnapshot } from "firebase/firestore";
-import { db } from "@/firebase/firebase-config";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { db, auth } from "@/firebase/firebase-config";
 import { Movie, MoviesAddedProps } from "@/types/Types";
 
-const RootLayout = () => {
+function RootLayout() {
   const [showMenu, setShowMenu] = useState(false);
   const [allMovies, setAllMovies] = useState<MoviesAddedProps[]>([]);
 
   useEffect(() => {
-    const moviesCollectionRef = collection(db, "Movies");
+    const unsubscribeAuth = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const moviesCollectionRef = collection(db, "Movies");
+        const myQuery = query(
+          moviesCollectionRef,
+          where("createdBy", "==", user.uid)
+        );
+        console.log(myQuery);
 
-    const unsubscribe = onSnapshot(moviesCollectionRef, (movies) => {
-      const movieAdded = movies.docs.map((doc) => ({
-        movieAutoId: doc.id,
-        movieInfo: doc.data() as Movie,
-      }));
+        const unsubscribeMovies = onSnapshot(myQuery, (movies) => {
+          const movieAdded = movies.docs.map((doc) => ({
+            movieAutoId: doc.id,
+            movieInfo: doc.data() as Movie,
+          }));
+          console.log(movieAdded);
+          setAllMovies(movieAdded);
+        });
 
-      setAllMovies((prevMovies) =>
-        prevMovies.length !== movieAdded.length ? movieAdded : prevMovies
-      );
+        return () => unsubscribeMovies();
+      } else {
+        setAllMovies([]);
+      }
     });
 
-    return () => unsubscribe();
+    return () => unsubscribeAuth();
   }, []);
 
   return (
     <div className="box-border">
       <header>
-        <div className="p-2  fixed top-0 right-0 left-0 z-10 w-full h-[50px] bg-[#213555] flex justify-between items-center mx-auto mt-0 ">
+        <div className="p-2 fixed top-0 right-0 left-0 z-10 w-full h-[50px] bg-[#213555] flex justify-between items-center mx-auto mt-o">
           <NavLink to="/" className="text-2xl text-slate-100 tracking-widest">
             TMDB
           </NavLink>
@@ -70,12 +81,12 @@ const RootLayout = () => {
                 Contact
               </NavLink>
               <NavLink
-                to="Login"
+                to="Register"
                 className=" hover:text-[#D8C4B6] hover:scale-105 tracking-wider cursor-pointer"
               >
-                Login
+                Register
               </NavLink>
-              <NavLink to="shoppingCart" className=" relative cursor-pointer  ">
+              <NavLink to="shoppingCart" className="relative cursor-pointer">
                 <TiShoppingCart className="w-6 h-6" />
                 {allMovies.length > 0 && (
                   <span className="absolute text-blue-700 bg-yellow-400 text-center bottom-2 left-6 border rounded-full h-6 w-6 text-sm font-bold">
@@ -143,6 +154,6 @@ const RootLayout = () => {
       <div>{!showMenu && <Outlet />}</div>
     </div>
   );
-};
+}
 
 export default RootLayout;

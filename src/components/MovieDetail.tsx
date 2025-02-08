@@ -4,7 +4,7 @@ import { fetchMovies } from "../movieAPI";
 import { Movie } from "../types/Types";
 import MyCarousel from "./MyCarousel";
 import Footer from "./Footer";
-import Favourite from "./Favourite";
+import WatchListMovie from "./WatchListMovie";
 
 function MovieDetail() {
   const { movieId } = useParams();
@@ -49,7 +49,7 @@ function MovieDetail() {
             Release date: {selectedMovie?.release_date}
           </p>
 
-          <Favourite selectedMovie={selectedMovie} />
+          <WatchListMovie selectedMovie={selectedMovie} />
         </div>
       </div>
       <div className="bg-slate-700 text-center flex flex-col justify-evenly w-full h-[500px]  ">

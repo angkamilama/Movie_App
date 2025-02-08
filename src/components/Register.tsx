@@ -11,14 +11,14 @@ type UserInfo = {
 };
 
 function Register() {
+  const [userInfo, setUserInfo] = useState<UserInfo>();
+  const [userCreated, setUserCreated] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<RegisterFormValues>();
-  const [userInfo, setUserInfo] = useState<UserInfo>();
-  const [userCreated, setUserCreated] = useState(false);
 
   const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
     try {
@@ -33,7 +33,6 @@ function Register() {
       setUserInfo({ uid, email: email! });
       setUserCreated(true);
       reset();
-      // ...
     } catch (error) {
       console.log(error);
     }

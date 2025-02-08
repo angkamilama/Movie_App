@@ -1,5 +1,3 @@
-// import WatchingMovie from "../public/WatchingMovie.jpg";
-
 function About() {
   return (
     <div className="bg-slate-600 min-h-screen w-screen pt-[45px] flex justify-center items-center">

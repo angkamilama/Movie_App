@@ -11,7 +11,6 @@ function MovieList() {
     const fetchMoviesData = async () => {
       try {
         const moviesData = await fetchMovies();
-        console.log(moviesData);
         setMovies(moviesData);
       } catch (error) {
         setErrorMsg(true);
