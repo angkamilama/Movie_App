@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchMovies } from "../movieAPI";
+import { fetchMovies } from "../MovieAPI";
 import { NavLink } from "react-router-dom";
 import { Movie } from "../types/Types";
 
-const Movies = () => {
+const LimitedMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState(false);
 
@@ -43,7 +43,7 @@ const Movies = () => {
   if (error) {
     return (
       <p className="text-red text-3xl">
-        ⚠️ Error fetching movies. Please try again later.
+        Error fetching movies. Please try again later.
       </p>
     );
   }
@@ -69,4 +69,4 @@ const Movies = () => {
     </>
   );
 };
-export default Movies;
+export default LimitedMovies;

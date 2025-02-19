@@ -7,6 +7,7 @@ import { VscAccount } from "react-icons/vsc";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db, auth } from "@/firebase/firebase-config";
 import { Movie, MoviesAddedProps } from "@/types/Types";
+import { Suspense } from "react";
 
 function RootLayout() {
   const [showMenu, setShowMenu] = useState(false);
@@ -151,7 +152,13 @@ function RootLayout() {
           )}
         </div>
       </header>
-      <div>{!showMenu && <Outlet />}</div>
+      <div>
+        {!showMenu && (
+          <Suspense fallback={<p>Loading...</p>}>
+            <Outlet />
+          </Suspense>
+        )}
+      </div>
     </div>
   );
 }

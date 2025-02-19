@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchMovies } from "../movieAPI";
+import { fetchMovies } from "../MovieAPI";
 import { NavLink } from "react-router-dom";
 import { Movie } from "../types/Types";
 
-function MovieList() {
+function Movies() {
   const [movies, setMovies] = useState<Movie[] | null>();
   const [errorMsg, setErrorMsg] = useState(false);
 
@@ -59,4 +59,4 @@ function MovieList() {
   );
 }
 
-export default MovieList;
+export default Movies;

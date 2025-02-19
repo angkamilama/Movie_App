@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovies } from "../movieAPI";
+import { fetchMovies } from "../MovieAPI";
 import { Movie } from "../types/Types";
 import MyCarousel from "./MyCarousel";
 import Footer from "./Footer";

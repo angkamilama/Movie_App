@@ -1,5 +1,7 @@
-import Movies from "./LimitedMovies";
-import Footer from "./Footer";
+import { lazy, Suspense } from "react";
+
+const Footer = lazy(() => import("./Footer"));
+const LimitedMovies = lazy(() => import("./LimitedMovies"));
 
 function Home() {
   return (
@@ -20,14 +22,16 @@ function Home() {
           </div>
         </div>
         <div className="bg-[#3E5879] w-full">
-          <Movies />
+          <Suspense fallback={<h2>loading...</h2>}>
+            <LimitedMovies />
+          </Suspense>
         </div>
       </main>
-      <Footer />
+      <Suspense fallback={<p>Loading Footer...</p>}>
+        <Footer />
+      </Suspense>
     </>
   );
 }
 
 export default Home;
-
-// ${showMenu} ? "hidden" : "visible"

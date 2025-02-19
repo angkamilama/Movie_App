@@ -5,15 +5,17 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import About from "./components/About";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import RootLayout from "./components/RootLayout";
-import Contact from "./components/Contact";
-import MovieList from "./components/Movies";
-import MovieDetail from "./components/MovieDetail";
-import Home from "./components/Home";
-import ShoppingCart from "./components/ShoppingCart";
+import { lazy } from "react";
+
+const Home = lazy(() => import("./components/Home"));
+const About = lazy(() => import("./components/About"));
+const Register = lazy(() => import("./components/Register"));
+const Login = lazy(() => import("./components/Login"));
+const Contact = lazy(() => import("./components/Contact"));
+const ShoppingCart = lazy(() => import("./components/ShoppingCart"));
+const Movies = lazy(() => import("./components/Movies"));
+const MovieDetail = lazy(() => import("./components/MovieDetail"));
+const RootLayout = lazy(() => import("./components/RootLayout"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,7 +25,7 @@ const router = createBrowserRouter(
       <Route path="About" element={<About />} />
       <Route path="Register" element={<Register />} />
       <Route path="Contact" element={<Contact />} />
-      <Route path="Movies" element={<MovieList />} />
+      <Route path="Movies" element={<Movies />} />
       <Route path="shoppingCart" element={<ShoppingCart />} />
       <Route path="movies/:movieId" element={<MovieDetail />} />
     </Route>
