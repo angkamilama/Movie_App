@@ -10,6 +10,7 @@ function MovieDetail() {
   const { movieId } = useParams();
   const [movies, setMovies] = useState<Movie[] | []>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [errorMsg, setErrorMsg] = useState<null | string>();
 
   useEffect(() => {
     const fetchMoviesData = async () => {
@@ -22,7 +23,7 @@ function MovieDetail() {
 
         setSelectedMovie(movie);
       } catch (error) {
-        console.error("error:", error);
+        setErrorMsg("there is no movie to fetch");
       }
     };
     fetchMoviesData();
@@ -48,8 +49,11 @@ function MovieDetail() {
           <p className="text-[#A9C46C]">
             Release date: {selectedMovie?.release_date}
           </p>
-
-          <WatchListMovie selectedMovie={selectedMovie} />
+          {errorMsg ? (
+            errorMsg
+          ) : (
+            <WatchListMovie selectedMovie={selectedMovie} />
+          )}
         </div>
       </div>
       <div className="bg-slate-700 text-center flex flex-col justify-evenly w-full h-[500px]  ">

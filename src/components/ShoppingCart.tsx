@@ -17,6 +17,7 @@ function ShoppingCart() {
     []
   );
   const [user, setUser] = useState(auth.currentUser);
+  const [errormsg, setErrorMsg] = useState<null | string>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -49,7 +50,7 @@ function ShoppingCart() {
         console.log("Fetched movies:", movieAdded);
         setFavouriteMovies(movieAdded);
       } catch (error) {
-        console.error("Error fetching movies:", error);
+        setErrorMsg("Error fetching movie");
       }
     };
 
@@ -97,7 +98,7 @@ function ShoppingCart() {
           ))
         ) : (
           <p className="text-red-400 text-2xl mt-12">
-            Sorry! There are no movies to display
+            {errormsg || "no movies found"}
           </p>
         )}
       </div>
